@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:text="Score: "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/scoreValue"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Who are you?"
+        android:textSize="20dp" />
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="130dp"
+        android:id="@+id/options">
+
+        <RadioButton
+            android:id="@+id/option1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 1"
+            android:hint="1"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/option2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 2"
+            android:hint="2"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/option3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 3"
+            android:hint="3"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/option4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 4"
+            android:hint="4"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:textSize="20dp" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="400dp"
+        android:text="Submit"
+        android:id="@+id/submitButton"
+        android:layout_gravity="center_horizontal" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/addButton"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:text="ADD" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewAnswer"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:text="0"-->
+<!--        android:layout_marginLeft="130dp"-->
+<!--        android:layout_marginTop="300dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold" />-->
+
+
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Show Selected"-->
+<!--        android:id="@+id/button"-->
+<!--        android:onClick="onclickbuttonMethod"-->
+<!--        android:layout_gravity="center_horizontal" />-->
+
+</RelativeLayout>
