@@ -13,9 +13,17 @@ import android.widget.Toast;
 
 import com.example.myquizapp.entities.Question;
 import com.example.myquizapp.libraries.QuestionsLibrary;
+import com.example.myquizapp.network.APIClient;
+import com.example.myquizapp.network.response.QuestionResponseModel;
+import com.example.myquizapp.network.service.QuestionService;
 
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Integer currentScore = 0;
     QuestionsLibrary questionsLibrary = new QuestionsLibrary();
     Question question;
+    QuestionService questionService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         submitButton = (Button) findViewById(R.id.submitButton);
         scoreValue = (TextView) findViewById(R.id.scoreValue);
 
+        questionService = APIClient.getInstance().create(QuestionService.class);
+
         writeQuestion();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Integer selectedOption = Integer.parseInt((String) answeredOption.getHint());
+                    System.out.println(selectedOption);
+                    System.out.println(question.getCorrectOption());
                     if (selectedOption == question.getCorrectOption()) {
                         Toast.makeText(MainActivity.this, "Chill! You choose correct option.", Toast.LENGTH_SHORT).show();
                         currentScore++;
@@ -66,11 +79,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void writeQuestion() {
-        question = questionsLibrary.getQuestions().get((new Random()).nextInt(questionsLibrary.getQuestions().size()));
-        questionText.setText(question.getQuestionText());
-        option1.setText(question.getOption1());
-        option2.setText(question.getOption2());
-        option3.setText(question.getOption3());
-        option4.setText(question.getOption4());
+        System.out.println("hi sajjad!");
+        questionService.getQuestion().enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<QuestionResponseModel> call, Response<QuestionResponseModel> response) {
+                System.out.println(response);
+                if (response.code() == 200) {
+                    QuestionResponseModel questionResponseModel = response.body();
+                    question = questionResponseModel.toQuestionModel();
+                    questionText.setText(question.getQuestionText());
+                    option1.setText(question.getOption1());
+                    option2.setText(question.getOption2());
+                    option3.setText(question.getOption3());
+                    option4.setText(question.getOption4());
+                } else {
+                    System.out.println(response.code() + "i failed here");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QuestionResponseModel> call, Throwable t) {
+                System.out.println("it was failed!");
+            }
+        });
     }
 }

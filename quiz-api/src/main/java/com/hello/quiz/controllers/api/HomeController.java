@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api")
 public class HomeController {
-    @GetMapping("/")
+    @GetMapping("")
     public HashMap<String, String> home() {
         HashMap<String, String> res = new HashMap<>();
         res.put("hello", "Welcome to Quiz API Server!");
